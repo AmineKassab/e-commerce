@@ -38,7 +38,7 @@ const registerUser=async(req,res)=>{
             return res.json({success:false,message:"Please enter a valid email"})
         }
         if(password.length < 8){
-            return res.json({sucess:false,message:"Please enter a strong password"})
+            return res.json({success:false,message:"Please enter a strong password"})
         }
         const salt=await bcrypt.genSalt(10)
         const hashedPassword=await bcrypt.hash(password,salt)
@@ -47,7 +47,7 @@ const registerUser=async(req,res)=>{
         const user= await newUser.save()
 
         const token=createToken(user._id)
-        res.json({sucess:true,token})
+        res.json({success:true,token})
 
     } catch (error) {
         console.log(error);
