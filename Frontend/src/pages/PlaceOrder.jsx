@@ -52,6 +52,10 @@ function PlaceOrder() {
         items:orderItems,
         amount:getCartAmount()+delivery_fee
       }
+      if(!token){
+        toast.error("Please log in to place your order.")
+        return;
+      }
 
       switch(method) {
         case 'cod': {
