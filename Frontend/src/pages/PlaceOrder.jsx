@@ -6,6 +6,8 @@ import { faStripe,faCcVisa } from '@fortawesome/free-brands-svg-icons'
 import { ShopContext } from '../context/ShopContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
