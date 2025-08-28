@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
 import { ToastContainer } from "react-toastify";
 import Verify from './pages/Verify';
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   

@@ -55,6 +55,7 @@ function PlaceOrder() {
         amount:getCartAmount()+delivery_fee
       }
       if(!token){
+        console.log("il y a pas de token")
         toast.error("Please log in to place your order.")
         return;
       }
