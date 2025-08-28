@@ -13,30 +13,31 @@ function Login() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
 
-  const onSubmitHandler = async(event) => {
-  event.preventDefault();
-  try {
-    if(currentState === 'Sign Up') {
-      const response = await axios.post(backendUrl+'/api/user/register', {name, email, password})
-      
-      // DEBUG: Ajoutez cette ligne pour voir la réponse complète
-      console.log('Response complète:', response.data)
-      
-      if(response.data.success) {
-        setToken(response.data.token)
-        localStorage.setItem('token', response.data.token)
-      } else {
-        toast.error(response.data.message)
-        console.log('Erreur backend:', response.data.message) // DEBUG
+  const onSubmitHandler = async(event)=>{
+    event.preventDefault();
+    try {
+      if(currentState==='Sign Up'){
+        const response = await axios.post(backendUrl+'/api/user/register',{name,email,password})
+        if(response.data.success){
+          setToken(response.data.token)
+          localStorage.setItem('token',response.data.token)
+        }else{
+          toast.error(response.data.message)
+        }
+      }else{
+        const response= await axios.post(backendUrl+'/api/user/login',{email,password})
+        if(response.data.success){
+          setToken(response.data.token)
+          localStorage.setItem('token',response.data.token)
+        }else{
+          toast.error(response.data.message)
+        }
       }
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
     }
-    // ... reste du code
-  } catch (error) {
-    console.log('Erreur complète:', error)
-    console.log('Réponse d\'erreur:', error.response?.data) // DEBUG
-    toast.error(error.message)
   }
-}
 
   useEffect(()=>{
     if(token){
