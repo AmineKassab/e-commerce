@@ -34,6 +34,7 @@ function PlaceOrder() {
 
   const onSubmitHandler=async(event)=>{
     event.preventDefault()
+    if(!token) return;
     try {
       let orderItems=[]
       for(const items in cartItems){
@@ -150,7 +151,17 @@ function PlaceOrder() {
             
           </div>
           <div className='w-full text-end mt-8'>
-            <button type='submit'  className='cursor-pointer bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
+            <button 
+              type='submit'  
+              disabled={!token}
+              className={`px-16 py-3 text-sm font-medium transition-all duration-200 ${
+                !token 
+                  ? 'bg-gray-400 text-gray-200 cursor-not-allowed' 
+                  : 'bg-black text-white cursor-pointer hover:bg-gray-800'
+              }`}
+            >
+              {!token ? 'LOGIN REQUIRED' : 'PLACE ORDER'}
+            </button>
           </div>
         </div>
       </div>
